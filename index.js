@@ -19,7 +19,6 @@ const commentsRoutes = require("./routes/c28_291_routes_comments");
 const indexRoutes = require("./routes/c28_291_routes_index");
 
 //-------ENVIRONMENT SETUP---
-
 if (process.env.NODE_ENV !== "production"){
 	dotenv.config({path: "./config.env"})
 }
@@ -33,7 +32,12 @@ if (process.env.NODE_ENV !== "production"){
 	}
 }
 
+//-------MONGOOSE SETUP------
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
 
+mongoose.connect(dbUrl);
 
 //-------EXPRESS SETUP-------
 var app = express();
@@ -71,13 +75,6 @@ app.set("view engine", "ejs");
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundsRoutes);
 app.use("/campgrounds/:id/comments", commentsRoutes);
-
-//-------MONGOOSE SETUP------
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-
-mongoose.connect(dbUrl);
 
 
 //--------START SERVER--------
