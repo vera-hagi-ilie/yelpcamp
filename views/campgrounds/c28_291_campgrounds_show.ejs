@@ -1,0 +1,51 @@
+<%- include("../partials/c28_291_header") %>
+<div class="container my-3">
+	<div class="row">
+		<div class="col-md-3">
+			<h2 class="my-3">YelpCamp</h2>
+			<p class="tagline">
+				The place to find your next adventure
+			</p>
+		</div>
+		<div class="col-md-9">
+			<div class="card">
+  				<img class="card-img-top" src="<%= selectedCampground.image %>" alt="Card image">
+  				<div class="card-body">
+    				<h5 class="card-title"><%= selectedCampground.name %></h5>
+    				<p class="card-text"><%= selectedCampground.description %></p>
+					<p class="card-text"><em>Submitted by <%= selectedCampground.author.username %></em></p>
+					<% if(currentUser && (selectedCampground.author.userId.equals(currentUser.id) ||  currentUser.username === process.env.ADMIN)){ %>
+						<a class="btn btn-primary" href="/campgrounds/<%= selectedCampground.id%>/edit">Edit Campground</a>
+						<form class="d-inline form-inline" action="/campgrounds/<%= selectedCampground.id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger">Delete Campground</button>
+						</form>
+					<% } %>
+  				</div>
+			</div>
+			<div class="card my-3">
+  				<div class="card-header">Comments</div>
+  				<div class="card-body">
+					<% if(selectedCampground.comments.length > 0){ %>
+						<% selectedCampground.comments.forEach(function(comment){ %>
+							<p class="card-text author"><%= comment.author.username %></p>
+							<p class="card-text"><%= comment.text %></p>
+							<% if(currentUser && (comment.author.userId.equals(currentUser.id) || currentUser.username === process.env.ADMIN)){ %>
+								<a class="btn btn-xs btn-primary d-inline" href="/campgrounds/<%= selectedCampground.id%>/comments/<%= comment.id %>/edit">Edit Comment</a>
+								<form class="d-inline form-inline" action="/campgrounds/<%= selectedCampground.id%>/comments/<%= comment.id %>?_method=DELETE" method="POST">
+									<button class="btn btn-xs btn-danger d-inline">Delete Comment</button>
+								</form>
+							<% } %>
+						<% }) %>
+					<% }else{ %>
+						<p>There are currently no comments</p>
+					<% } %>
+					<hr>
+					<a class="btn btn-primary" href="/campgrounds/<%= selectedCampground.id%>/comments/new">Add New Comment</a>
+  				</div>
+			</div>
+			<a class="btn btn-primary" href="/campgrounds">Show all campgrounds</a>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/c28_291_footer") %>

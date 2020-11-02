@@ -1,0 +1,18 @@
+<%- include("../partials/c28_291_header") %>
+
+<div class="container">
+		<h1 class="text-center my-4">Edit Campground</h1>
+		<div class="row d-flex justify-content-center">
+		<div class="col-sm-10 col-md-8 col-lg-4">
+			<form action="/campgrounds/<%= selectedCampground.id %>?_method=PUT" method="POST">
+				<input class="form-control my-3" type="text" name="editedCampground[name]" value="<%= selectedCampground.name %>" placeholder="campground name" required>
+				<input class="form-control my-3" type="text" name="editedCampground[image]" value="<%= selectedCampground.image %>" placeholder="image url" required>
+				<textarea class="form-control my-3" rows="5" name="editedCampground[description]" placeholder="description"><%= selectedCampground.description %></textarea>
+				<button class="btn btn-lg btn-primary btn-block my-2">Submit</button>
+			</form>
+			<a href="/campgrounds/<%= selectedCampground.id %>">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/c28_291_footer") %>

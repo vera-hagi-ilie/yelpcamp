@@ -1,0 +1,16 @@
+<%- include("../partials/c28_291_header") %>
+
+<div class="container">
+		<h1 class="text-center my-4">Add a New Comment about <%= selectedCampground.name %></h1>
+		<div class="row d-flex justify-content-center">
+		<div class="col-sm-10 col-md-8 col-lg-4">
+			<form action="/campgrounds/<%= selectedCampground.id %>/comments" method="POST">
+				<textarea class="form-control my-3" rows="5" placeholder="your comment" name="newComment[text]"></textarea>
+				<button class="btn btn-lg btn-primary btn-block my-2">Submit</button>
+			</form>
+			<a href="/campgrounds/<%= selectedCampground.id %>">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/c28_291_footer") %>

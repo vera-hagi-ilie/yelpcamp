@@ -1,0 +1,19 @@
+<%- include("partials/c28_291_header") %>
+
+<div class="container">
+	<h1>Log In</h1>
+	<form action="/login" method="POST">
+		<div class="form-row">
+			<input type="text" placeholder="username" name="username" class="form-control col-md-4 my-3" required>
+		</div>
+		<div class="form-row">
+			<input type="password" placeholder="password" name="password" class="form-control col-md-4 mb-3" required>
+		</div>
+		<button class="btn btn-primary">Submit</button>
+	</form>
+	<div class="my-3">
+		<p>Don't have an account? Sign up <a href="/register">here</a>.</p>
+	</div>
+</div>
+
+<%- include("partials/c28_291_footer") %>

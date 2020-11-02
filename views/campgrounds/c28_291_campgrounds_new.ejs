@@ -1,0 +1,18 @@
+<%- include("../partials/c28_291_header") %>
+
+<div class="container">
+		<h1 class="text-center my-4">Create a New Campground</h1>
+		<div class="row d-flex justify-content-center">
+		<div class="col-sm-10 col-md-8 col-lg-4">
+			<form action="/campgrounds" method="POST">
+				<input class="form-control my-3" type="text" placeholder="camp name" name="campName" required minlength="2">
+				<input class="form-control my-3" type="text" placeholder="image url" name="image" required>
+				<textarea class="form-control my-3" rows="5" placeholder="description" name="description"></textarea>
+				<button class="btn btn-lg btn-primary btn-block my-2">Submit</button>
+			</form>
+			<a href="/campgrounds">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/c28_291_footer") %>
