@@ -6,6 +6,7 @@
   "scripts": {},
   "author": "VHAG",
   "license": "ISC",
+  "start": "node index.js",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
