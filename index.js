@@ -19,13 +19,21 @@ const commentsRoutes = require("./routes/c28_291_routes_comments");
 const indexRoutes = require("./routes/c28_291_routes_index");
 
 //-------ENVIRONMENT SETUP---
-dotenv.config({path: "./config.env"})
-const env = process.env.ENVIRONMENT
-const productionDBUrl = process.env.ATLAS_DB_URL
-const testDBUrl = process.env.LOCAL_DB
-const sessionSecret = process.env.EXPRESS_SESSION_SECRET
 
-const dbUrl = (env === "production") ? productionDBUrl : testDBUrl;
+if (process.env.NODE_ENV !== "production"){
+	dotenv.config({path: "./config.env"})
+}
+
+const sessionSecret = process.env.EXPRESS_SESSION_SECRET 
+let dbUrl = process.env.ATLAS_DB_URL;
+
+if (process.env.NODE_ENV !== "production"){
+	if (process.env.DB_ENVIRONMENT !== "production"){
+		dbUrl = process.env.LOCAL_DB_URL
+	}
+}
+
+
 
 //-------EXPRESS SETUP-------
 var app = express();
